@@ -36,7 +36,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="/insertar-nota">Insertar nota</a></li>
+                        <li><a href="#">Ver Bloque</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
