@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
+Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
+Route::get('/bloque', 'MultipleController@index')->name('bloques');

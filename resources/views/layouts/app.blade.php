@@ -37,7 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="/insertar-nota">Insertar nota</a></li>
-                        <li><a href="#">Ver Bloque</a></li>
+                        <li><a href="/bloque">Ver Bloque</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
