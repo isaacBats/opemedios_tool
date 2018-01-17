@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateMultipleRequest;
 use App\Multiple;
 use Illuminate\Http\Request;
+use Jenssegers\Date\Date;
 
 class MultipleController extends Controller
 {
@@ -32,7 +33,35 @@ class MultipleController extends Controller
         foreach ($news as $new) {
             $new->theme_id = $this->getThemeById($new->theme_id);
         }
-        return view('multiples.index', compact('news'));
+        $today = $this->getTodayAttribute()->format('l d, F Y');
+        $newsSorted = $this->sortNews($news);
+        return view('multiples.index', compact('news', 'today', 'newsSorted'));
+    }
+
+    private function sortNews($news)
+    {
+        $sorted = array();
+        foreach ($news as $new) {
+            if (!key_exists($new->theme_id, $sorted)) {
+                $sorted[$new->theme_id][] = $new;
+            } else {
+                $sorted[$new->theme_id][] = $new;
+            }
+        }
+        $themes = HomeController::getThemes();
+
+        foreach ($themes as $t) {
+            if (!key_exists($t, $sorted)) {
+                $sorted[$t] = 'El día de hoy no se reportaron notas.';
+            }
+        }
+        
+        return $sorted;
+    }
+
+    private function getTodayAttribute()
+    {
+        return new Date();
     }
 
     private function getThemeById($id)

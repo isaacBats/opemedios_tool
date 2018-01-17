@@ -41,7 +41,7 @@ class HomeController extends Controller
      * Get all themes default
      * @return array 
      */
-    private function getThemes()
+    public static function getThemes()
     {
         return [
             1 => 'AgroBIO México',
