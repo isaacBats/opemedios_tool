@@ -38,7 +38,7 @@ class MultipleController extends Controller
         return view('multiples.index', compact('news', 'today', 'newsSorted'));
     }
 
-    private function sortNews($news)
+    public static function sortNews($news)
     {
         $sorted = array();
         foreach ($news as $new) {
@@ -59,12 +59,17 @@ class MultipleController extends Controller
         return $sorted;
     }
 
-    private function getTodayAttribute()
+    public function sendMail()
+    {
+        echo 'Se ha enviado el correo';
+    }
+
+    public static function getTodayAttribute()
     {
         return new Date();
     }
 
-    private function getThemeById($id)
+    public static function getThemeById($id)
     {
         switch ($id) {
             case 1: return 'AgroBIO México';

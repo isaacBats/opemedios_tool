@@ -63,7 +63,7 @@
                             </p>
                         @endforeach
                     @else
-                        <p>{{ $element }}.</p>
+                        <p>{{ $element }}</p>
                     @endif
                 @endforeach
             </div>
@@ -71,7 +71,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
+        <a href="/enviar-correo" class="btn btn-primary">Enviar</a>
       </div>
     </div>
   </div>
