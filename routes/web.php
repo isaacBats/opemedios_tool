@@ -22,9 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
 Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
 Route::get('/enviar-correo', function() {
-    
-    // Mail::to('klonate@gmail.com')
-    //     ->send(new \App\Mail\Blocknews());
-    return new \App\Mail\Blocknews();
+    $users = ['klonate@gmail.com'];
+    foreach ($users as $user) {
+        Mail::to($user)
+            ->send(new \App\Mail\Blocknews());
+    }
 });
 Route::get('/bloque', 'MultipleController@index')->name('bloques');
