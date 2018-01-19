@@ -14,6 +14,16 @@ class MultipleController extends Controller
      */
     const NO_ENVIADO = 0;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create(CreateMultipleRequest $request)
     {
         $nota = Multiple::create([
