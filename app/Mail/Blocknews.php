@@ -48,7 +48,6 @@ class Blocknews extends Mailable
         $today = MultipleController::getTodayAttribute()->format('l d, F Y');
         $newsSorted = MultipleController::sortNews($news);
         
-        Multiple::where('dispatched', self::NO_ENVIADO)->update(['dispatched' => self::ENVIADO]);
         return $this->from('info@opemedios.com.mx')
             ->subject('Newsletter AgroBio_' . date('d-M-Y'))
             ->markdown('emails.block', compact('today', 'newsSorted'));
