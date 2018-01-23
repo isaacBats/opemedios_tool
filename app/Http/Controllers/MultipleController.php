@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMultipleRequest;
 use App\Multiple;
+use App\Link;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 
@@ -39,13 +40,14 @@ class MultipleController extends Controller
 
     public function index()
     {
+        $links = Link::where('created_at', 'like', date('Y-m-d') . '%')->get();
         $news = Multiple::where('dispatched', self::NO_ENVIADO)->get();
         foreach ($news as $new) {
             $new->theme_id = $this->getThemeById($new->theme_id);
         }
         $today = $this->getTodayAttribute()->format('l d, F Y');
         $newsSorted = $this->sortNews($news);
-        return view('multiples.index', compact('news', 'today', 'newsSorted'));
+        return view('multiples.index', compact('news', 'today', 'newsSorted', 'links'));
     }
 
     public static function sortNews($news)

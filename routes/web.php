@@ -36,3 +36,4 @@ Route::get('/enviar-correo', function() {
     return redirect('/bloque')->with('status', 'Se ha enviado el correo del bloque.');
 });
 Route::get('/bloque', 'MultipleController@index')->name('bloques');
+Route::post('/guardar-link', 'LinkController@store')->name('guardar_link');
