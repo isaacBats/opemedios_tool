@@ -22,5 +22,22 @@
                 @endif
             @endforeach
         </div>
+        <div class="row">
+                @if ($primerasP)
+                    <a href="{{ $linkPrimeras }}">Primeras Planas</a> |
+                @endif
+                @if ($portadas)
+                    <a href="{{ $linkPortadas }}">Portadas Financieras</a> |
+                @endif
+                @if ($columnasP)
+                    <a href="{{ $linkColumnas }}">Columnas Políticas</a> |
+                @endif
+                @if ($columnasF)
+                    <a href="{{ $linkColumnasF }}">Columnas Financieras</a> |
+                @endif
+                @if ($cartones)
+                    <a href="{{ $linkCartones }}">Cartones</a> |
+                @endif
+            </div>
     </div>
 @endcomponent

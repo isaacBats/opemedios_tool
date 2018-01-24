@@ -40,14 +40,41 @@ class MultipleController extends Controller
 
     public function index()
     {
+        $primerasP = $columnasF = $columnasP = $cartones = $portadas = false;
+        $linkPrimeras = $linkPortadas = $linkColumnas = $linkColumnasF = $linkCartones = '#';
         $links = Link::where('created_at', 'like', date('Y-m-d') . '%')->get();
+
+        foreach ($links as $link) {
+            if($link->type == 1){
+                $primerasP = true;
+                $linkPrimeras = $link->link;
+            }
+            if($link->type == 2){
+                $portadas = true;
+                $linkPortadas = $link->link;
+            }
+            if($link->type == 3){
+                $columnasP = true;
+                $linkColumnas = $link->link;
+            }
+            if($link->type == 4){
+                $columnasF = true;
+                $linkColumnasF = $link->link;
+            }
+            if($link->type == 5){
+                $cartones = true;
+                $linkCartones = $link->link;
+            }
+
+        }
+        
         $news = Multiple::where('dispatched', self::NO_ENVIADO)->get();
         foreach ($news as $new) {
             $new->theme_id = $this->getThemeById($new->theme_id);
         }
         $today = $this->getTodayAttribute()->format('l d, F Y');
         $newsSorted = $this->sortNews($news);
-        return view('multiples.index', compact('news', 'today', 'newsSorted', 'links'));
+        return view('multiples.index', compact('news', 'today', 'newsSorted', 'primerasP', 'columnasF', 'columnasP', 'cartones', 'portadas', 'linkPrimeras', 'linkPortadas', 'linkColumnas', 'linkColumnasF', 'linkCartones'));
     }
 
     public static function sortNews($news)

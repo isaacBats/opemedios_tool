@@ -10,78 +10,9 @@
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @forelse ($links as $link)
-                        @if ($link->type == 1)
-                            <p>Primeras Planas OK.</p>
-                            @continue
-                        @else
-                            <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
-                                {{ csrf_field() }}
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-url" class="sr-only" >Primeras Planas</label>
-                                    <input type="url" name="url" class="form-control" placeholder="Primeras Planas" />
-                                    <input type="hidden" name="type" value="1" />
-                                </div>
-                                <input type="submit"  value="Guardar" class="btn btn-primary btn-sm mb-2" />
-                            </form>
-                        @endif
-                        @if ($link->type == 2)
-                            <p>Portadas Financieras OK.</p>
-                            @continue
-                        @else
-                            <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
-                                {{ csrf_field() }}
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-url" class="sr-only" >Portadas Financieras</label>
-                                    <input type="url" name="url" class="form-control" placeholder="Portadas Financieras" />
-                                    <input type="hidden" name="type" value="2" />
-                                </div>
-                                <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
-                            </form>
-                        @endif
-                        @if ($link->type == 3)
-                            <p>Columnas Políticas OK.</p>
-                            @continue
-                        @else
-                            <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
-                                {{ csrf_field() }}
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-url" class="sr-only" >Columnas Políticas</label>
-                                    <input type="url" name="url" class="form-control" placeholder="Columnas Políticas" />
-                                    <input type="hidden" name="type" value="3" />
-                                </div>
-                                <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
-                            </form>
-                        @endif
-                        @if ($link->type == 4)
-                            <p>Columnas Financieras OK.</p>
-                            @continue
-                        @else
-                            <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
-                                {{ csrf_field() }}
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-url" class="sr-only" >Columnas Financieras</label>
-                                    <input type="url" name="url" class="form-control" placeholder="Columnas Financieras" />
-                                    <input type="hidden" name="type" value="4" />
-                                </div>
-                                <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
-                            </form>
-                        @endif
-                        @if ($link->type == 5)
-                            <p>Cartones OK.</p>
-                            @continue
-                        @else
-                            <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
-                                {{ csrf_field() }}
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-url" class="sr-only" >Cartones</label>
-                                    <input type="url" name="url" class="form-control" placeholder="Cartones" />
-                                    <input type="hidden" name="type" value="5" />
-                                </div>
-                                <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
-                            </form>
-                        @endif
-                    @empty
+                    @if ($primerasP)
+                        <p>Primeras Planas OK.</p>
+                    @else
                         <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
                             {{ csrf_field() }}
                             <div class="form-group mx-sm-3 mb-2">
@@ -91,6 +22,10 @@
                             </div>
                             <input type="submit"  value="Guardar" class="btn btn-primary btn-sm mb-2" />
                         </form>
+                    @endif
+                    @if ($portadas)
+                        <p>Portadas Financieras OK.</p>
+                    @else
                         <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
                             {{ csrf_field() }}
                             <div class="form-group mx-sm-3 mb-2">
@@ -100,6 +35,10 @@
                             </div>
                             <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
                         </form>
+                    @endif
+                    @if ($columnasP)
+                        <p>Columnas Políticas OK.</p>
+                    @else
                         <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
                             {{ csrf_field() }}
                             <div class="form-group mx-sm-3 mb-2">
@@ -109,6 +48,10 @@
                             </div>
                             <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
                         </form>
+                    @endif
+                    @if ($columnasF)
+                        <p>Columnas Financieras OK.</p>
+                    @else
                         <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
                             {{ csrf_field() }}
                             <div class="form-group mx-sm-3 mb-2">
@@ -118,6 +61,10 @@
                             </div>
                             <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
                         </form>
+                    @endif
+                    @if ($cartones)
+                        <p>Cartones OK.</p>
+                    @else
                         <form class="form-inline" style="margin: 10px 0;" method="post" action="/guardar-link">
                             {{ csrf_field() }}
                             <div class="form-group mx-sm-3 mb-2">
@@ -127,7 +74,7 @@
                             </div>
                             <input type="submit"  value="Guardar" class="btn btn-primary btn-sm" />
                         </form>
-                    @endforelse
+                    @endif
                 </div>
             </div>
         </div>
@@ -195,6 +142,23 @@
                         <p>{{ $element }}</p>
                     @endif
                 @endforeach
+            </div>
+            <div class="row">
+                @if ($primerasP)
+                    <a href="{{ $linkPrimeras }}">Primeras Planas</a> |
+                @endif
+                @if ($portadas)
+                    <a href="{{ $linkPortadas }}">Portadas Financieras</a> |
+                @endif
+                @if ($columnasP)
+                    <a href="{{ $linkColumnas }}">Columnas Políticas</a> |
+                @endif
+                @if ($columnasF)
+                    <a href="{{ $linkColumnasF }}">Columnas Financieras</a> |
+                @endif
+                @if ($cartones)
+                    <a href="{{ $linkCartones }}">Cartones</a> |
+                @endif
             </div>
         </div>
       </div>

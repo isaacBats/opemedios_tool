@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Http\Controllers\MultipleController;
 use App\Multiple;
+use App\Link;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -40,6 +41,34 @@ class Blocknews extends Mailable
      */
     public function build()
     {
+        $primerasP = $columnasF = $columnasP = $cartones = $portadas = false;
+        $linkPrimeras = $linkPortadas = $linkColumnas = $linkColumnasF = $linkCartones = '#';
+        $links = Link::where('created_at', 'like', date('Y-m-d') . '%')->get();
+
+        foreach ($links as $link) {
+            if($link->type == 1){
+                $primerasP = true;
+                $linkPrimeras = $link->link;
+            }
+            if($link->type == 2){
+                $portadas = true;
+                $linkPortadas = $link->link;
+            }
+            if($link->type == 3){
+                $columnasP = true;
+                $linkColumnas = $link->link;
+            }
+            if($link->type == 4){
+                $columnasF = true;
+                $linkColumnasF = $link->link;
+            }
+            if($link->type == 5){
+                $cartones = true;
+                $linkCartones = $link->link;
+            }
+
+        }
+
         $news = Multiple::where('dispatched', self::NO_ENVIADO)->get();
         foreach ($news as $new) {
             $new->theme_id = MultipleController::getThemeById($new->theme_id);
@@ -50,6 +79,6 @@ class Blocknews extends Mailable
         
         return $this->from('info@opemedios.com.mx')
             ->subject('Newsletter AgroBio_' . date('d-M-Y'))
-            ->markdown('emails.block', compact('today', 'newsSorted'));
+            ->markdown('emails.block', compact('today', 'newsSorted', 'primerasP', 'columnasF', 'columnasP', 'cartones', 'portadas', 'linkPrimeras', 'linkPortadas', 'linkColumnas', 'linkColumnasF', 'linkCartones'));
     }
 }
