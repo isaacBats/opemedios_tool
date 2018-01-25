@@ -37,4 +37,6 @@
         </div>
     </div>
 </div>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea', menubar: false, plugins: 'textcolor contextmenu colorpicker', toolbar: 'undo redo | bold italic strikethrough forecolor backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent' });</script>
 @endsection
