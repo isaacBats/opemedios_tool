@@ -60,7 +60,7 @@
                         @if (is_array($element))
                             @foreach ($element as $val)
                                 <h3>{{ $val->title }}</h3>
-                                <p>{{ $val->content }}<span class="font"></span></p>
+                                <p>{{{ $val->content }}}<span class="font"></span></p>
                                 <table>
                                     <tr>
                                         <td >
