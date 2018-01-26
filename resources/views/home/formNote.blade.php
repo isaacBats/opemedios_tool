@@ -37,6 +37,6 @@
         </div>
     </div>
 </div>
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea', menubar: false, plugins: 'textcolor contextmenu colorpicker', toolbar: 'undo redo | bold italic strikethrough forecolor backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent' });</script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=5c8sovvq9snn8w3tih484tylxqlb2abygf074jejwq14rvla"></script>
+<script>tinymce.init({ selector:'textarea', menubar: false, plugins: 'powerpaste paste textcolor contextmenu colorpicker contextmenu', toolbar: 'undo redo | bold italic strikethrough forecolor backcolor  | alignleft aligncenter alignright alignjustify paste | bullist numlist outdent indent', paste_as_text: true, contextmenu: "link image inserttable | cell row column deletetable" });</script>
 @endsection
