@@ -113,25 +113,25 @@ class MultipleController extends Controller
         switch ($id) {
             case 1: return 'AgroBIO México';
             case 2: return 'Bayer';
-            case 3: return 'Dow';
-            case 4: return 'Dupont-Pioneer';
-            case 5: return 'Monsanto';
-            case 6: return 'Syngenta';
+            case 3: return 'Dow - Pioneer';
+            case 4: return 'Monsanto';
+            case 5: return 'Syngenta';
+            case 6: return 'Agricultura';
             case 7: return 'Transgénicos';
-            case 8: return 'Biotecnología agrícola';
-            case 9: return 'Biotecnología';
-            case 10: return 'Maíz';
-            case 11: return 'Algodón';
-            case 12: return 'Soya';
-            case 13: return 'Sagarpa';
-            case 14: return 'Semarnat';
-            case 15: return 'Coparmex';
-            case 16: return 'Consejo Coordinador empresarial';
-            case 17: return 'Antad';
-            case 18: return 'Cimmyt';
-            case 19: return 'Cinvestav - IPN';
-            case 20: return 'Organizaciones campesinas y productoras agrícolas; CNPAMM, CNC,';
-            case 21: return 'Empresas agrícolas:  Cargill, Maseca, Minsa';
+            case 8: return 'Organismos genéticamente modificados';
+            case 9: return 'Biotecnología agrícola';
+            case 10: return 'Biotecnología modera';
+            case 11: return 'Maíz';
+            case 12: return 'Algodón';
+            case 13: return 'Soya';
+            case 14: return 'Tortilla';
+            case 15: return 'Bioseguridad';
+            case 16: return 'Ingeniería genética';
+            case 17: return 'Edición genómica';
+            case 18: return 'CIBIOGEM';
+            case 19: return 'TLCAN';
+            case 20: return 'NAFTA';
+            case 21: return 'Consejo Nacional Agropecuario';
             default: return 'Tema no encontrado';
         }
     }
