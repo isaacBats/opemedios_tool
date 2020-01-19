@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('newsletter') }}">
                         {{ config('app.name', 'Opemedios') }}
                     </a>
                 </div>
@@ -38,7 +38,7 @@
                     @if(Route::has('login'))
                         @auth
                             <ul class="nav navbar-nav">
-                                <li><a href="/newsletter/nuevo">Crear newsletter</a></li>
+                                <li><a href="{{ route('newsletter.create') }}">Crear newsletter</a></li>
                                 <li><a href="/newsletter/configuracion">Configuración</a></li>
                             </ul>
                         @endauth

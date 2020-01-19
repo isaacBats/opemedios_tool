@@ -25,6 +25,10 @@ Auth::routes();
 
 Route::group(['prefix' => 'newsletter', 'middleware' => ['auth',]], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('nuevo', 'NewsletterController@showForm')->name('newsletter.create');
+    Route::post('nuevo', 'NewsletterController@create')->name('newsletter.create');
+    Route::get('editar/{id}', 'NewsletterController@edit')->name('newsletter.edit');
+    Route::post('editar/{id}', 'NewsletterController@update')->name('newsletter.update');
     // Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
     // Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
     // Route::get('/enviar-correo', function() {

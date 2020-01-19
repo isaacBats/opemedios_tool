@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Newsletter;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $newsletters = [];
+        $newsletters = Newsletter::all();
 
         return view('home', compact('newsletters'));
     }

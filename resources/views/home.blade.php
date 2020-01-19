@@ -30,7 +30,7 @@
                                         <th>{{ $newsletter->created_at }}</th>
                                         <th>{{ $newsletter->status }}</th>
                                         <th>
-                                            <a href="#"><button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+                                            <a href="{{ route('newsletter.edit', ['id' => $newsletter->id]) }}"><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                             <a href="#"><button type="button" class="btn btn-primary"><i class="fas fa-cog"></i></button></a>
                                             <a href="#" target="_blank"><button type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button></a>
                                             <button type="button" class="btn btn-primary" data-id="'.$ns['id'].'"  data-toggle="modal" data-target="#custom_send" id="btn_custom_send"><i class="far fa-envelope-open"></i></button>
