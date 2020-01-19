@@ -35,11 +35,14 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="/insertar-nota">Insertar nota</a></li>
-                        <li><a href="/bloque">Ver Bloque</a></li>
-                    </ul>
-
+                    @if(Route::has('login'))
+                        @auth
+                            <ul class="nav navbar-nav">
+                                <li><a href="/newsletter/nuevo">Crear newsletter</a></li>
+                                <li><a href="/newsletter/configuracion">Configuración</a></li>
+                            </ul>
+                        @endauth
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
