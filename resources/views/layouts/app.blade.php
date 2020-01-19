@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -39,7 +41,7 @@
                         @auth
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ route('newsletter.create') }}">Crear newsletter</a></li>
-                                <li><a href="/newsletter/configuracion">Configuración</a></li>
+                                <li><a href="{{ route('newsletter.config') }}">Configuración</a></li>
                             </ul>
                         @endauth
                     @endif
@@ -80,5 +82,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
