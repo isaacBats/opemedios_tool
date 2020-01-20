@@ -33,8 +33,8 @@
                                             <a href="{{ route('newsletter.edit', ['id' => $newsletter->id]) }}"><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                             {{-- <a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-cog"></i></button></a> --}}
                                             <a href="{{ route('newsletter.preview', ['id' => $newsletter->id]) }}" target="_blank"><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></a>
-                                            <button type="button" class="btn btn-primary" id="send-mail-manual" data-id="{{ $newsletter->id }}"><i class="fa fa-envelope-open"></i></button>
-                                            <button type="button" class="btn btn-danger" data-id="'.$ns['id'].'" id="delete_newsletter"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-primary send-mail-manual" data-id="{{ $newsletter->id }}"><i class="fa fa-envelope-open"></i></button>
+                                            <button type="button" class="btn btn-danger delete-newsletter" data-id="{{ $newsletter->id }}"><i class="fa fa-trash"></i></button>
                                         </th>
                                         <th>
                                             <a href="{{ route('newsletter.sendmail', ['id' => $newsletter->id]) }}" class="btn btn-primary"><i class="fa fa-envelope"></i></a>
@@ -84,30 +84,19 @@
 <div class="modal fade" id="modalDeleteNewsletter" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="form-modal" method="POST" action="{{ route('newsletter.config.banner') }}" enctype="multipart/form-data">
+            <form id="form-modal-delete-newsletter" method="POST" action="" >
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title">Cambiar Banner</h5>
+                    <h5 class="modal-title">Borrar Newsletter</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                        <div class="form-group row">
-                            <label for="banner" class="col-sm-2 col-md-2 col-form-label text-md-right">Banner</label>
-
-                            <div class="col-sm-8 col-md-8">
-                                <input id="banner" type="file" class="form-control-file @error('banner') is-invalid @enderror" name="banner" >
-                                @if ($errors->has('banner'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('banner') }}</strong>
-                                </span>
-                            @endif
-                            </div>
-                        </div>
+                        ¿Estas seguro que quieres borrar este Newsletter?
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Cambiar</button>
+                    <button type="submit" class="btn btn-primary">Borrar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -118,13 +107,26 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#table-newsletters').on('click', 'button#send-mail-manual', function(event) {
+            
+            // envio manual
+            $('#table-newsletters').on('click', 'button.send-mail-manual', function(event) {
                 event.preventDefault()
                 var id = $(this).data('id')
                 var modal = $('#modalSendManual')
                 var form = $('#form-modal-send-manual')
 
                 form.attr('action', `/newsletter/enviar-mail/${id}`)
+                modal.modal('show')
+            })
+
+            // borrar newsletter
+            $('#table-newsletters').on('click', 'button.delete-newsletter', function(event) {
+                event.preventDefault()
+                var id = $(this).data('id')
+                var modal = $('#modalDeleteNewsletter')
+                var form = $('#form-modal-delete-newsletter')
+
+                form.attr('action', `/newsletter/borrar/${id}`)
                 modal.modal('show')
             })
         })

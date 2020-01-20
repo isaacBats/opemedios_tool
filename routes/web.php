@@ -32,6 +32,7 @@ Route::group(['prefix' => 'newsletter', 'middleware' => ['auth',]], function () 
     Route::post('nuevo', 'NewsletterController@create')->name('newsletter.create');
     Route::get('editar/{id}', 'NewsletterController@edit')->name('newsletter.edit');
     Route::post('editar/{id}', 'NewsletterController@update')->name('newsletter.update');
+    Route::post('borrar/{id}', 'NewsletterController@delete')->name('newsletter.delete');
     
     Route::get('configuracion', 'NewsletterController@config')->name('newsletter.config');
     Route::post('configuracion', 'NewsletterController@configUpdate')->name('newsletter.config');

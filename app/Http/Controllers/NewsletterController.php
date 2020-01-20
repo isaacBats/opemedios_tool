@@ -106,4 +106,11 @@ class NewsletterController extends Controller
 
         return view('emails.unam', compact('config', 'newsletter'));
     }
+
+    public function delete (Request $request, $id) {
+        $newsletter = Newsletter::find($id);
+        $newsletter->delete();
+
+        return redirect()->route('home')->with('status','Se ha eliminado un newsletter');
+    }
 }
