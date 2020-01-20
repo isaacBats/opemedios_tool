@@ -50,6 +50,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                    <a href="{{ route('home') }}" style="float: right;" class="btn btn-primary">Guardar</a>
                                 </div>
                             </div>
                         </div>

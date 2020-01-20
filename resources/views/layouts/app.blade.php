@@ -40,6 +40,7 @@
                     @if(Route::has('login'))
                         @auth
                             <ul class="nav navbar-nav">
+                                <li><a href="{{ route('home') }}">Ir a Newsletters</a></li>
                                 <li><a href="{{ route('newsletter.create') }}">Crear newsletter</a></li>
                                 <li><a href="{{ route('newsletter.config') }}">Configuración</a></li>
                             </ul>

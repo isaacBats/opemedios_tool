@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $newsletters = Newsletter::all();
+        $newsletters = Newsletter::all()->sortByDesc('created_at');
 
         return view('home', compact('newsletters'));
     }
