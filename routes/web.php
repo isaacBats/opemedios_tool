@@ -37,14 +37,9 @@ Route::group(['prefix' => 'newsletter', 'middleware' => ['auth',]], function () 
     Route::post('configuracion', 'NewsletterController@configUpdate')->name('newsletter.config');
     Route::post('configuracion/update/banner', 'NewsletterController@configUpdateBanner')->name('newsletter.config.banner');
 
-    Route::get('send-test', function (){
-
-        $config = NewsletterConfig::all()->last();
-        $newsletter = Newsletter::all()->last();
-        // dd([$config, $newsletter]);
-        Mail::to(explode(',', $config->emails))->send(new Blocknews($config, $newsletter));
-        return 'Se ha enviado el correo';
-    });
+    Route::get('enviar-mail/{id}', 'NewsletterController@sendMail')->name('newsletter.sendmail');
+    Route::get('vista-previa/{id}', 'NewsletterController@preview')->name('newsletter.preview');
+    // Route::get('enviar-mail-manual/{id}', 'NewsletterController@sendMail')->name('newsletter.sendmail.manual');
     // Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
     // Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
     // Route::get('/enviar-correo', function() {

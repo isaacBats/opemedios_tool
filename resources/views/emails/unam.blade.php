@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{ config('app.name', 'Opemedios Newsletter') }}</title>
     <style>
         body, .body{
           margin: 0;

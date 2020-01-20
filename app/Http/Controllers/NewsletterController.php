@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Blocknews;
 use App\Newsletter;
 use App\NewsletterConfig;
 use App\NewsletterData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class NewsletterController extends Controller
@@ -81,5 +83,27 @@ class NewsletterController extends Controller
         }
 
         return back()->with('status', 'Se ha cambiado el banner');
+    }
+
+    public function sendMail(Request $request, $id) {
+        $config = NewsletterConfig::all()->last();
+        $newsletter = Newsletter::find($id);
+        if($request->has('emails')) {
+            $emails = explode(',',$request->input('emails'));
+        } else {
+            $emails = explode(',', $config->emails);
+        }
+        Mail::to($emails)->send(new Blocknews($config, $newsletter));
+        $newsletter->status ++;
+        $newsletter->save();
+        return redirect()->route('home')->with('status','Se ha enviado el correo');
+    }
+
+    public function preview (Request $request, $id) {
+
+        $config = NewsletterConfig::all()->last();
+        $newsletter = Newsletter::find($id);
+
+        return view('emails.unam', compact('config', 'newsletter'));
     }
 }
