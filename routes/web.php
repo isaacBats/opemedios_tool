@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Mail\Blocknews;
 use App\Multiple;
+use App\Newsletter;
+use App\NewsletterConfig;
 use Illuminate\Support\Facades\Mail;
 
 const NO_ENVIADO = 0;
@@ -33,6 +36,15 @@ Route::group(['prefix' => 'newsletter', 'middleware' => ['auth',]], function () 
     Route::get('configuracion', 'NewsletterController@config')->name('newsletter.config');
     Route::post('configuracion', 'NewsletterController@configUpdate')->name('newsletter.config');
     Route::post('configuracion/update/banner', 'NewsletterController@configUpdateBanner')->name('newsletter.config.banner');
+
+    Route::get('send-test', function (){
+
+        $config = NewsletterConfig::all()->last();
+        $newsletter = Newsletter::all()->last();
+        // dd([$config, $newsletter]);
+        Mail::to(explode(',', $config->emails))->send(new Blocknews($config, $newsletter));
+        return 'Se ha enviado el correo';
+    });
     // Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
     // Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
     // Route::get('/enviar-correo', function() {

@@ -27,23 +27,4 @@ class LinkController extends Controller
         
         return redirect('/bloque')->with('status', 'Se guardo el link para ' . $this->getTipo($link->type));
     }
-
-    public static function getTipo($type) 
-    {
-        switch ($type) {
-            case 1:
-                return 'Primeras Planas';
-            case 2:
-                return 'Prortadas Financieras';
-            case 3:
-                return 'Columnas Políticas';
-            case 4:
-                return 'Columnas Financieras';
-            case 5:
-                return 'Cartones';
-            
-            default:
-                return 'No se encontro el tipo que pides.';
-        }
-    }
 }
