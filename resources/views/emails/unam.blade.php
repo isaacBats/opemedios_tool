@@ -206,7 +206,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="center">
-                                                        HAGA CLIC EN EL NOMBRE DE LA SECCIÓN PARA VISUALIZAR LA INFORMACIÓN<br>
+                                                        {{-- HAGA CLIC EN EL NOMBRE DE LA SECCIÓN PARA VISUALIZAR LA INFORMACIÓN<br> --}}
                                                         <br>
                                                     </td>
                                                 </tr>
