@@ -93,7 +93,8 @@ class NewsletterController extends Controller
         } else {
             $emails = explode(',', $config->emails);
         }
-        Mail::to($emails)->send(new Blocknews($config, $newsletter));
+        Mail::bcc($emails,'Lista de contactos')
+            ->send(new Blocknews($config, $newsletter, $emails));
         $newsletter->status ++;
         $newsletter->save();
         return redirect()->route('home')->with('status','Se ha enviado el correo');
