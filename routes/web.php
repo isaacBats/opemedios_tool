@@ -40,12 +40,7 @@ Route::group(['prefix' => 'newsletter', 'middleware' => ['auth',]], function () 
 
     Route::get('enviar-mail/{id}', 'NewsletterController@sendMail')->name('newsletter.sendmail');
     Route::get('vista-previa/{id}', 'NewsletterController@preview')->name('newsletter.preview');
-    // Route::get('enviar-mail-manual/{id}', 'NewsletterController@sendMail')->name('newsletter.sendmail.manual');
-    // Route::get('/insertar-nota', 'HomeController@formNote')->name('form_nota');
-    // Route::post('/insertar-nota', 'MultipleController@create')->name('create_nota');
-    // Route::get('/enviar-correo', function() {
-        
-    // });
-    // Route::get('/bloque', 'MultipleController@index')->name('bloques');
-    // Route::post('/guardar-link', 'LinkController@store')->name('guardar_link');
+    
+    Route::post('seccion/{id}', 'NewsletterDataController@update')->name('newsletter.data.update');
+    Route::post('seccion/delete/{id}', 'NewsletterDataController@delete')->name('newsletter.data.delete');
 });
