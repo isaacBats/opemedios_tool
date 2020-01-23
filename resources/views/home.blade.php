@@ -28,7 +28,22 @@
                                     <tr>
                                         <th>{{ $loop->iteration }}</th>
                                         <th>{{ $newsletter->created_at }}</th>
-                                        <th>{{ $newsletter->status }}</th>
+                                        <th>
+                                            @if($newsletter->status)
+                                                @for($i = 0; $i < $newsletter->status; $i++)
+                                                    @if($newsletter->status > 5)
+                                                        @component('components.checks')
+                                                            {{ $newsletter->status - 5 }}
+                                                        @endcomponent
+                                                        @break
+                                                    @else
+                                                        <span class="text-primary"><i class="fa fa-check-circle"></i><span>
+                                                    @endif
+                                                @endfor
+                                            @else
+                                                <span class="text-warning"><i class="fa fa-pause-circle"></i><span>
+                                            @endif
+                                        </th>
                                         <th>
                                             <a href="{{ route('newsletter.edit', ['id' => $newsletter->id]) }}"><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                             {{-- <a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-cog"></i></button></a> --}}
