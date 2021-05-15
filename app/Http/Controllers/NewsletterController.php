@@ -8,6 +8,7 @@ use App\NewsletterConfig;
 use App\NewsletterData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class NewsletterController extends Controller
@@ -88,13 +89,31 @@ class NewsletterController extends Controller
     public function sendMail(Request $request, $id) {
         $config = NewsletterConfig::all()->last();
         $newsletter = Newsletter::find($id);
+
         if($request->has('emails')) {
             $emails = explode(',',$request->input('emails'));
         } else {
             $emails = explode(',', $config->emails);
         }
-        Mail::bcc($emails,'Lista de contactos')
-            ->send(new Blocknews($config, $newsletter, $emails));
+        $overHundred = (sizeof($emails) > 100) ? true : false;
+        try{
+            if($overHundred) {
+                $emailsChunk = array_chunk($emails, 90);
+                foreach ($emailsChunk as $emailList) {
+                    Mail::bcc($emailList,'Lista de contactos')
+                        ->send(new Blocknews($config, $newsletter, $emailList));
+                }
+            } else {
+                Mail::bcc($emails,'Lista de contactos')
+                    ->send(new Blocknews($config, $newsletter, $emails));
+
+            }
+
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            abort(500, "Error en el servidor. Contacta con el desarrollador.");
+        }
+
         $newsletter->status ++;
         $newsletter->save();
         return redirect()->route('home')->with('status','Se ha enviado el correo');
